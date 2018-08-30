@@ -1,0 +1,37 @@
+{
+  "PcbDataSettings": {
+    "GerberDataSettings": {
+      "GerberTopOverlayFile": "..\\..\\..\\demo-project\\Out\\Gerber\\PCB1.GM11",
+      "GerberBottomOverlayFile": "..\\..\\..\\demo-project\\Out\\Gerber\\PCB1.GM12",
+      "GerberTopPasteFile": "..\\..\\..\\demo-project\\Out\\Gerber\\PCB1.GTP",
+      "GerberBottomPasteFile": "..\\..\\..\\demo-project\\Out\\Gerber\\PCB1.GBP",
+      "GerberMechanicalOutlineFile": "..\\..\\..\\demo-project\\Out\\Gerber\\PCB1.GM1"
+    }
+  },
+  "AssemblyDataSettings": {
+    "PickPlaceBomImportSettings": {
+      "BomFile": "..\\..\\..\\demo-project\\Out\\BOM\\Bill of Materials-demo-project(Test1).csv",
+      "BomPartReferenceColumnName": "LibRef",
+      "BomDesignatorColumnName": "Designator",
+      "BomDescriptionColumnName": "Description",
+      "PnpFile": "..\\..\\..\\demo-project\\Out\\Pick Place\\Pick Place for PCB1.csv",
+      "PnpDesignatorColumnName": "Designator",
+      "PnpCenterXColumnName": "Mid X",
+      "PnpCenterYColumnName": "Mid Y",
+      "PnpLayerColumnName": "Layer",
+      "PnpRotationColumnName": "Rotation",
+      "PnpLayerTopName": "T",
+      "PnpLayerBottomName": "B"
+    }
+  },
+  "OutputSettings": {
+    "DotScaleFactor": 1.0,
+    "ComponentColors": [
+      "Red",
+      "Green",
+      "DodgerBlue",
+      "Orange",
+      "DarkViolet"
+    ]
+  }
+}
