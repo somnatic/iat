@@ -62,11 +62,14 @@ namespace IatConsole
     {
         public List<Color> ComponentColors { get; set; }
 
-        public decimal DotScaleFactor;
+        public decimal DotScaleFactor { get; set; }
+
+        public string OutputFilename { get; set; }
 
         public OutputSettings()
         {
             ComponentColors = new List<Color>();
+            OutputFilename = "out.pdf";
         }
     }
 

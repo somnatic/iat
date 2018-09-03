@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using IatConsole.Assembly.Components;
 using IatConsole.Assembly.Pcb;
@@ -190,6 +191,10 @@ namespace IatConsole
             }
 
 
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
 
             pdfDocument.Save(filename);
 

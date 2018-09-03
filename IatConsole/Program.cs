@@ -19,40 +19,54 @@ namespace IatConsole
             Console.WriteLine("Intelligent Assembly Tool " + versionNumber);
             Console.WriteLine("Created by Thomas Linder / mail@thomaslinder.at / http://www.thomaslinder.at/iat");
 
-            if (args.Length != 1)
+#if CREATECONFIG
+            // Create dummy
+            IatRunConfiguration.CreateDummyConfiguration("IatRunConfiguration.iat");
+            File.Copy("IatRunConfiguration.iat", @"..\..\IatRunConfiguration.iat", true);
+            Logger.Info("Dummy file IatRunConfiguration.iat created");
+            return;
+#endif
+
+            string configFile = "";
+
+            if (args.Length == 0)
+            {
+                if (File.Exists("IatRunConfiguration.iat"))
+                {
+                    configFile = "IatRunConfiguration.iat";
+                }
+            }
+            else if (args.Length == 1)
+            {
+                if (args[0] == "/c")
+                {
+                    // Create dummy
+                    IatRunConfiguration.CreateDummyConfiguration("IatRunConfiguration.iat");
+                    Logger.Info("Dummy configuration file IatRunConfiguration.iat created");
+                    return;
+                }
+                else
+                {
+                    configFile = args[0];
+                }
+            }
+            else
             {
                 Logger.Error("Cannot find configuration file; please specify a configuration filename or create a dummy configuration using the /c switch");
                 return;
             }
-#if CREATECONFIG
-            // Create dummy
-            IatRunConfiguration.CreateDummyConfiguration("IatRunConfiguration.json");
-            File.Copy("IatRunConfiguration.json", @"..\..\IatRunConfiguration.json", true);
-            Logger.Info("Dummy file IatRunConfiguration.xml created");
-            return;
-#endif
 
-            if (args[0] == "/c")
-            {
-                // Create dummy
-                IatRunConfiguration.CreateDummyConfiguration("IatRunConfiguration.json");
-                Logger.Info("Dummy configuration file IatRunConfiguration.xml created");
-                return;
-            }
 
-            if (!File.Exists(args[0]))
+            if (!File.Exists(configFile))
             {
                 Logger.Error("Cannot find configuration file; file does not exist");
                 return;
             }
 
-            IatRunConfiguration config;
+            IatRunConfiguration rc;
             try
             {
-                config = IatRunConfiguration.Load(args[0]);
-
-
-                // GlobalConfiguration.Instance.SetConfiguration(args[0]);
+                rc = IatRunConfiguration.Load(configFile);
                 
                 Logger.Info("Configuration loaded successfully");
             }
@@ -62,8 +76,6 @@ namespace IatConsole
                 return;
 
             }
-
-            IatRunConfiguration rc = config;
 
             Assembly.Assembly assembly = new Assembly.Assembly();
 
@@ -152,7 +164,7 @@ namespace IatConsole
 
             
             //return ad;
-            string filename = $"{Guid.NewGuid().ToString("D").ToUpper()}_tempfile.pdf";
+            string filename = rc.OutputSettings.OutputFilename;
             PdfCreator.CreateAssemblyDocument(assembly, rc, filename);
 
             // Save the s_document...

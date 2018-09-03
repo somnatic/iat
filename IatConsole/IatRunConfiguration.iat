@@ -25,13 +25,14 @@
     }
   },
   "OutputSettings": {
-    "DotScaleFactor": 1.0,
     "ComponentColors": [
       "Red",
       "Green",
       "DodgerBlue",
       "Orange",
       "DarkViolet"
-    ]
+    ],
+    "DotScaleFactor": 1.0,
+    "OutputFilename": "out.pdf"
   }
 }
